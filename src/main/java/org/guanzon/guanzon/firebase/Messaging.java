@@ -1,0 +1,61 @@
+package org.guanzon.guanzon.firebase;
+
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import com.google.firebase.messaging.Message;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+
+public class Messaging {
+    /**
+     * public Messaging(String fsProdctID){
+     * 
+     * @param fsProdctID 
+     * \n
+     * gRider - Guanzon Circle\n
+     * IntegSys - Guanzon Connect\n
+     */
+    public Messaging(String fsProdctID){
+        try {
+            FirebaseOptions options = new FirebaseOptions.Builder()
+            .setCredentials(GoogleCredentials.fromStream(MessagingAccountKey.get(fsProdctID)))
+            .build();
+
+            FirebaseApp.initializeApp(options);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }        
+    }
+    
+    public JSONObject send(String to_key, JSONObject msg_data){
+        Message message = Message.builder()
+            .putData("title", (String) msg_data.get("title"))
+            .putData("message", (String) msg_data.get("message"))
+            .putData("imgurl", (String) msg_data.get("imgurl"))
+            .putData("msg_data", (String) msg_data.get("msg_data"))
+            .setToken(to_key)
+            .build();
+        
+        msg_data = new JSONObject();
+        
+        try {
+            String response = FirebaseMessaging.getInstance().send(message);
+            
+            System.out.println(response);
+            msg_data.put("result", "success");
+        } catch (FirebaseMessagingException e) {
+            msg_data.put("result", "error");
+            
+            JSONObject err = new JSONObject();
+            err.put("code", 100);
+            err.put("message", e.getMessage());
+            msg_data.put("error", err);
+        }
+        
+        return msg_data;
+    }
+}
