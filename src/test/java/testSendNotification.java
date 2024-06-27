@@ -14,14 +14,14 @@ public class testSendNotification {
         System.setProperty("sys.default.path.config", path);
         
         JSONObject loJSON = new JSONObject();
-        loJSON.put("title", "Notification Title");
-        loJSON.put("message", "Testing ito");
+        loJSON.put("title", "Test Notification");
+        loJSON.put("message", "Test Notification Body");
         loJSON.put("imgurl", "");
-        loJSON.put("msg_data", "");
+        loJSON.put("msg_data", new JSONObject());
         
-        Messaging message = new Messaging("gRider");
+        Messaging message = new Messaging("IntegSys");
         
-        loJSON = message.send("eaHLk2hrTjq1dDcycgomdo:APA91bFtCKuqm2debiRgzirk7sXfH28QRf-Poto2-UdzboNL7fvtrslTCSw9WGVBTygqXg9mJtYKjg7q17Ny-3c3siviMIepNnB17ih7JDxPgsYiCfAPMTl6IBAvbLMgVecmTtZDlDy3", loJSON);
+        loJSON = message.send("e32-tiqeQVyGg2Fe6nSTgI:APA91bGuoFI6q6-xB3jQxPp8a2upo-JEX_mqnPHx7mggH5CME9wp6LdTXyTclyMQsMr_G4_1hxMF9DDAIfrwgmVnr2S-Wx4pYSJVh8d1v5ArTbKt0IcJtm7Zm0WlmQc_ElgH4VlbIpjw", loJSON);
         System.out.println(loJSON);
     }
 }

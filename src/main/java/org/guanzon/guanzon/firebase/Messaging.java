@@ -32,11 +32,22 @@ public class Messaging {
     }
     
     public JSONObject send(String to_key, JSONObject msg_data){
+        if (to_key == null){
+            msg_data.put("result", "error");
+            
+            JSONObject err = new JSONObject();
+            err.put("code", 101);
+            err.put("message", "Receiver token is null.");
+            msg_data.put("error", err);
+            
+            return msg_data;
+        }
+        
         Message message = Message.builder()
             .putData("title", (String) msg_data.get("title"))
             .putData("message", (String) msg_data.get("message"))
             .putData("imgurl", (String) msg_data.get("imgurl"))
-            .putData("msg_data", (String) msg_data.get("msg_data"))
+            .putData("msg_data", ((JSONObject) msg_data.get("msg_data")).toJSONString())
             .setToken(to_key)
             .build();
         
@@ -45,8 +56,9 @@ public class Messaging {
         try {
             String response = FirebaseMessaging.getInstance().send(message);
             
-            System.out.println(response);
             msg_data.put("result", "success");
+            msg_data.put("payload", response);
+            
         } catch (FirebaseMessagingException e) {
             msg_data.put("result", "error");
             
