@@ -8,7 +8,7 @@ public class MessagingAccountKey {
         switch (fsProdctID.toLowerCase()){
             case "grider":
                 return new FileInputStream(System.getProperty("sys.default.path.config") + "/config/keys/gcircle.json");
-            case "integsys":
+            case "guanzonapp":
                 return new FileInputStream(System.getProperty("sys.default.path.config") + "/config/keys/gconnect.json");
             default:
                 return null;

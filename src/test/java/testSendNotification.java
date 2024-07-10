@@ -19,9 +19,9 @@ public class testSendNotification {
         loJSON.put("imgurl", "");
         loJSON.put("msg_data", new JSONObject());
         
-        Messaging message = new Messaging("IntegSys");
+        Messaging message = new Messaging("gRider");
         
-        loJSON = message.send("e32-tiqeQVyGg2Fe6nSTgI:APA91bGuoFI6q6-xB3jQxPp8a2upo-JEX_mqnPHx7mggH5CME9wp6LdTXyTclyMQsMr_G4_1hxMF9DDAIfrwgmVnr2S-Wx4pYSJVh8d1v5ArTbKt0IcJtm7Zm0WlmQc_ElgH4VlbIpjw", loJSON);
+        loJSON = message.send("dLVyOiYYSMq2tDe7ZXCTvs:APA91bHOFU0tLkPZGJiuMkeTVK1oWPNBQ9NxicDhZ53i6dWif3qwVOfIjp390Ro9xXFmx1ZCtvqDAkaAuiL3y_TEz759A10HKxO8cnHgPAfvR_Z1ziH_A9x7pqO_9OUZbrNHUvv75O7p", loJSON);
         System.out.println(loJSON);
     }
 }

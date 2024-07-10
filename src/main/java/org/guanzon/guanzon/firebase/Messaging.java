@@ -16,7 +16,7 @@ public class Messaging {
      * @param fsProdctID 
      * \n
      * gRider - Guanzon Circle\n
-     * IntegSys - Guanzon Connect\n
+     * GuanzonApp - Guanzon Connect\n
      */
     public Messaging(String fsProdctID){
         try {
