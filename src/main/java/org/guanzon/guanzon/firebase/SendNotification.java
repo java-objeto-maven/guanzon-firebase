@@ -37,7 +37,7 @@ public class SendNotification {
                     System.exit(1);
                 }
                 
-                sendRequestByTransaction("MX0124000070179");
+                sendRequestByTransaction("MX0124000060150");
                 //sendRequestByProduct("gRider");
 //                if(args.length == 0){
 //                    sendRequest();
